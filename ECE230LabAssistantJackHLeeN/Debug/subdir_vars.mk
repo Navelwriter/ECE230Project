@@ -9,45 +9,69 @@ CMD_SRCS += \
 ../msp432p4111.cmd 
 
 C_SRCS += \
-../keypadDriver.c \
+../csHFXT.c \
+../csLFXT.c \
+../dos.c \
+../keypadscan_subroutines.c \
 ../lcd8bitsece230winter2022.c \
 ../main.c \
 ../startup_msp432p4111_ccs.c \
-../system_msp432p4111.c 
+../system_msp432p4111.c \
+../uart_routines.c 
 
 C_DEPS += \
-./keypadDriver.d \
+./csHFXT.d \
+./csLFXT.d \
+./dos.d \
+./keypadscan_subroutines.d \
 ./lcd8bitsece230winter2022.d \
 ./main.d \
 ./startup_msp432p4111_ccs.d \
-./system_msp432p4111.d 
+./system_msp432p4111.d \
+./uart_routines.d 
 
 OBJS += \
-./keypadDriver.obj \
+./csHFXT.obj \
+./csLFXT.obj \
+./dos.obj \
+./keypadscan_subroutines.obj \
 ./lcd8bitsece230winter2022.obj \
 ./main.obj \
 ./startup_msp432p4111_ccs.obj \
-./system_msp432p4111.obj 
+./system_msp432p4111.obj \
+./uart_routines.obj 
 
 OBJS__QUOTED += \
-"keypadDriver.obj" \
+"csHFXT.obj" \
+"csLFXT.obj" \
+"dos.obj" \
+"keypadscan_subroutines.obj" \
 "lcd8bitsece230winter2022.obj" \
 "main.obj" \
 "startup_msp432p4111_ccs.obj" \
-"system_msp432p4111.obj" 
+"system_msp432p4111.obj" \
+"uart_routines.obj" 
 
 C_DEPS__QUOTED += \
-"keypadDriver.d" \
+"csHFXT.d" \
+"csLFXT.d" \
+"dos.d" \
+"keypadscan_subroutines.d" \
 "lcd8bitsece230winter2022.d" \
 "main.d" \
 "startup_msp432p4111_ccs.d" \
-"system_msp432p4111.d" 
+"system_msp432p4111.d" \
+"uart_routines.d" 
 
 C_SRCS__QUOTED += \
-"../keypadDriver.c" \
+"../csHFXT.c" \
+"../csLFXT.c" \
+"../dos.c" \
+"../keypadscan_subroutines.c" \
 "../lcd8bitsece230winter2022.c" \
 "../main.c" \
 "../startup_msp432p4111_ccs.c" \
-"../system_msp432p4111.c" 
+"../system_msp432p4111.c" \
+"../uart_routines.c" 
 
 

@@ -1,1 +1,1 @@
-"./keypadDriver.obj" "./lcd8bitsece230winter2022.obj" "./main.obj" "./startup_msp432p4111_ccs.obj" "./system_msp432p4111.obj" "../msp432p4111.cmd" -llibc.a 
+"./csHFXT.obj" "./csLFXT.obj" "./dos.obj" "./keypadscan_subroutines.obj" "./lcd8bitsece230winter2022.obj" "./main.obj" "./startup_msp432p4111_ccs.obj" "./system_msp432p4111.obj" "./uart_routines.obj" "../msp432p4111.cmd" -llibc.a 

@@ -10,11 +10,15 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
-"./keypadDriver.obj" \
+"./csHFXT.obj" \
+"./csLFXT.obj" \
+"./dos.obj" \
+"./keypadscan_subroutines.obj" \
 "./lcd8bitsece230winter2022.obj" \
 "./main.obj" \
 "./startup_msp432p4111_ccs.obj" \
 "./system_msp432p4111.obj" \
+"./uart_routines.obj" \
 "../msp432p4111.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
@@ -158,8 +162,8 @@ ECE230LabAssistantJackHLeeN.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "keypadDriver.obj" "lcd8bitsece230winter2022.obj" "main.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" 
-	-$(RM) "keypadDriver.d" "lcd8bitsece230winter2022.d" "main.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" 
+	-$(RM) "csHFXT.obj" "csLFXT.obj" "dos.obj" "keypadscan_subroutines.obj" "lcd8bitsece230winter2022.obj" "main.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" "uart_routines.obj" 
+	-$(RM) "csHFXT.d" "csLFXT.d" "dos.d" "keypadscan_subroutines.d" "lcd8bitsece230winter2022.d" "main.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" "uart_routines.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
