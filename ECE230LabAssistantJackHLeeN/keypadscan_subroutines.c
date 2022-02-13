@@ -1,7 +1,7 @@
 //File Name: keypadscan_subroutines.c
-//Author: Jianjian Song
+//Author: Noah Lee
 //ECE230 Winter 2021-2022
-//Date: February 8, 2022
+//Date: February 13, 2022
 //Purpose: Scan a 4x4 keypad to provide key numbers from 1 to 16
 //		   and assign numbers to mapped assignments
 //         if a corresponding key is pressed
