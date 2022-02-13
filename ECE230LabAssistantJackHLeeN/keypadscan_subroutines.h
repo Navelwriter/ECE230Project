@@ -17,7 +17,7 @@
  *                MSP432P4111
  *             ------------------
  *         /|\|                  |
- *          | |                  |
+ *          | |       input P6.0|---> button1
  *          --|RST    output P4.0|---> key0
  *            |       output P4.1|---> key1
  *            |       output P4.2|---> key2
@@ -32,11 +32,16 @@
 /* DriverLib Includes */
 #include <msp.h>
 #define KeypadPort P4
+#define buttonPort P6
+#define button1 BIT0
 #define KeypadInputPins (BIT7 | BIT6 | BIT5 | BIT4)
 #define KeypadOutputPins (BIT3 | BIT2 | BIT1 | BIT0)
 
-void kepadconfiguration(void);
+void debounce(uint16_t DEBOUNCETIME);
+void keypadconfiguration(void);
+void buttonConfig(void);
 char FindKey(void);
 void PORT4_IRQHandler(void);
+char reassignKeys(char input);
 
 

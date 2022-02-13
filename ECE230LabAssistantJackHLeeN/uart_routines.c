@@ -1,5 +1,6 @@
 /*
  * uart_routines.c
+ * Baud Rate 57600 1stop, even 1
  *
  *  Created on: Jan 28, 2022
  *      Author: Noah Lee
@@ -29,30 +30,31 @@ void ConfigureUART(void) {
     EUSCI_A0->CTLW0 |= EUSCI_A_CTLW0_SWRST; // Put eUSCI in reset to configure eUSCI
 
     EUSCI_A0->CTLW0 |= 0b1100000010000000;  //bits 15-14 for parity and bits 7-6 SMCLK
-    // TODO complete configuration of UART in eUSCI_A0 control register
 
     /* Baud Rate calculation
      * Refer to Section 24.3.10 of Technical Reference manual
-     * BRCLK = 12000000, Baud rate = 57600
-     *
-     * TODO calculate N and determine values for UCBRx, UCBRFx, and UCBRSx
-     *          values used in next two TODOs
-     */
+     * BRCLK = 12000000, Baud rate = 57600 */
+
     EUSCI_A0->BRW=ClockPrescalerValue;
 
-    // TODO set clock prescaler in eUSCI_A0 baud rate control register
     EUSCI_A0->MCTLW = (SecondModulationStage<<8)+(FirstModulationStage<<4)+1;    //enalble oversampling
-    // TODO configure baud clock modulation in eUSCI_A0 modulation control register
-
-
     EUSCI_A0->CTLW0 &= ~EUSCI_A_CTLW0_SWRST;    // Initialize eUSCI
     EUSCI_A0->IFG &= ~EUSCI_A_IFG_RXIFG;        // Clear eUSCI RX interrupt flag
     EUSCI_A0->IE |= EUSCI_A_IE_RXIE;            // Enable USCI_A0 RX interrupt
 } //end ConfigureUART(void)
 
 void SendChar(char letter){ //Single character to terminal
-    EUSCI_A0->TXBUF = letter;
+	while(!(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG));
+	EUSCI_A0->TXBUF = letter;
 }//end SendChar
+void SendAll(char *Buffer, unsigned int length){
+    unsigned int count;
+    for (count=0; count<=length; count++) {
+    // Check if the TX buffer is empty first
+      while(!(EUSCI_A0->IFG & EUSCI_A_IFG_TXIFG));
+      EUSCI_A0->TXBUF = Buffer[count];
+    }   //end for()
+}
 
 void SendCharArray(char *Buffer) {
     unsigned int count;
