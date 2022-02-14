@@ -11,9 +11,8 @@ CMD_SRCS += \
 C_SRCS += \
 ../csHFXT.c \
 ../csLFXT.c \
-../dos.c \
+../hex2dec.c \
 ../keypadscan_subroutines.c \
-../lcd8bitsece230winter2022.c \
 ../main.c \
 ../startup_msp432p4111_ccs.c \
 ../system_msp432p4111.c \
@@ -22,9 +21,8 @@ C_SRCS += \
 C_DEPS += \
 ./csHFXT.d \
 ./csLFXT.d \
-./dos.d \
+./hex2dec.d \
 ./keypadscan_subroutines.d \
-./lcd8bitsece230winter2022.d \
 ./main.d \
 ./startup_msp432p4111_ccs.d \
 ./system_msp432p4111.d \
@@ -33,9 +31,8 @@ C_DEPS += \
 OBJS += \
 ./csHFXT.obj \
 ./csLFXT.obj \
-./dos.obj \
+./hex2dec.obj \
 ./keypadscan_subroutines.obj \
-./lcd8bitsece230winter2022.obj \
 ./main.obj \
 ./startup_msp432p4111_ccs.obj \
 ./system_msp432p4111.obj \
@@ -44,9 +41,8 @@ OBJS += \
 OBJS__QUOTED += \
 "csHFXT.obj" \
 "csLFXT.obj" \
-"dos.obj" \
+"hex2dec.obj" \
 "keypadscan_subroutines.obj" \
-"lcd8bitsece230winter2022.obj" \
 "main.obj" \
 "startup_msp432p4111_ccs.obj" \
 "system_msp432p4111.obj" \
@@ -55,9 +51,8 @@ OBJS__QUOTED += \
 C_DEPS__QUOTED += \
 "csHFXT.d" \
 "csLFXT.d" \
-"dos.d" \
+"hex2dec.d" \
 "keypadscan_subroutines.d" \
-"lcd8bitsece230winter2022.d" \
 "main.d" \
 "startup_msp432p4111_ccs.d" \
 "system_msp432p4111.d" \
@@ -66,9 +61,8 @@ C_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "../csHFXT.c" \
 "../csLFXT.c" \
-"../dos.c" \
+"../hex2dec.c" \
 "../keypadscan_subroutines.c" \
-"../lcd8bitsece230winter2022.c" \
 "../main.c" \
 "../startup_msp432p4111_ccs.c" \
 "../system_msp432p4111.c" \

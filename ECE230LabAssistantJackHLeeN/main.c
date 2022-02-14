@@ -5,6 +5,7 @@
 #include <math.h>
 #include "csHFXT.h"
 #include "csLFXT.h"
+#include "hex2dec.h"
 /**
  * main.c
  */
@@ -17,7 +18,7 @@ void ConfigureGY521MPU6050(void);
 void SendCharArray(char *Buffer);
 void SendPrompt(void);
 void delay(unsigned int);
-void printOutBuffer(char Buffer[], size_t size);
+void printOutBuffer(char Buffer[], uint32_t size);
 
 
 enum Status {
@@ -48,11 +49,14 @@ void main(void) {
 	NVIC->ISER[0] = (1 << EUSCIB0_IRQn);
 	KeypadPort->OUT = (KeypadPort->OUT & ~KeypadOutputPins)
 			| (0b11110000 & KeypadOutputPins);
-	char DataBuffer[25];
-	size_t current_size = 0; //buffer is of size 0 from size
+	char DataBuffer[20];
+	char CharBuffer[25];
+	uint32_t current_size = 0; //buffer is of size 0 from size
 	while (1) {
 		if (buttonPress) {
 			printOutBuffer(DataBuffer, current_size);
+			sprintf(CharBuffer,"\r\n hex2dec: %6.4d", hextoDec(&DataBuffer[current_size], current_size ));
+			SendCharArray(&CharBuffer);
 			buttonPress = NO;
 			current_size = 0; //buffer is of size 0 from size
 		}
@@ -67,7 +71,7 @@ void main(void) {
 				DataBuffer[current_size] = input;
 				SendChar(DataBuffer[current_size]);
 
-				if (current_size <= 24) {
+				if (current_size <= 20) {
 					current_size++;
 				}
 				__enable_irq(); //enable interrupts
@@ -77,7 +81,7 @@ void main(void) {
 	}
 }
 
-void printOutBuffer(char Buffer[], size_t size) {
+void printOutBuffer(char Buffer[], uint32_t size) {
 	SendCharArray("\r\n final value: ");
 	uint32_t count;
 	for (count = 0; count < size; count++) {
