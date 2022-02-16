@@ -19,11 +19,19 @@ void SendCharArray(char *Buffer);
 void SendPrompt(void);
 void delay(unsigned int);
 void printOutBuffer(char Buffer[], uint32_t size);
+uint32_t convertHex(char *DataBuffer,uint32_t current_size);
 
+char CharBuffer[25];
+uint32_t maxSize = 3; //Global int to store how many chars to store for each data type, hex,bin,dec. It's 4 chars for hex
 
 enum Status {
 	NO, YES
 };
+typedef enum _SwitchState {
+	idle, hex, pwm
+} SwitchState;
+SwitchState dmmFunction;
+
 extern char NewKeyPressed;
 extern char buttonPress;
 extern char FoundKey;
@@ -50,43 +58,61 @@ void main(void) {
 	KeypadPort->OUT = (KeypadPort->OUT & ~KeypadOutputPins)
 			| (0b11110000 & KeypadOutputPins);
 	char DataBuffer[20];
-	char CharBuffer[25];
-	uint32_t current_size = 0; //buffer is of size 0 from size
+	uint32_t current_size,decimal = 0; //buffer is of size 0 from size, decimal is stored
 	while (1) {
 		if (buttonPress) {
-			printOutBuffer(DataBuffer, current_size);
-			sprintf(CharBuffer,"\r\n hex2dec: %6.4d", hextoDec(&DataBuffer[current_size], current_size ));
-			SendCharArray(&CharBuffer);
 			buttonPress = NO;
+			decimal = convertHex(&DataBuffer,current_size);
 			current_size = 0; //buffer is of size 0 from size
 		}
 		if (NewKeyPressed) {
 			input = FoundKey;
-			__disable_irq(); //Disable interrupts until done
 			NewKeyPressed = NO;
 			if (input != '\x0') {
 				if (current_size == 0) {
 					SendCharArray("\r\n Key Found: ");
 				}
-				DataBuffer[current_size] = input;
-				SendChar(DataBuffer[current_size]);
-
-				if (current_size <= 20) {
+				if (current_size <= maxSize) { //limit hex input to 4 characters
+					DataBuffer[current_size] = input;
+					SendChar(DataBuffer[current_size]);
 					current_size++;
 				}
-				__enable_irq(); //enable interrupts
-
 			}
 		}
 	}
 }
 
+/*
+ * PrintOutBuffer
+ * Input: character buffer, int size
+ * Output: none
+ * Description: Prints out the inputted value after pressing button
+ */
 void printOutBuffer(char Buffer[], uint32_t size) {
-	SendCharArray("\r\n final value: ");
+	SendCharArray("\r\n\r\n final value: ");
 	uint32_t count;
 	for (count = 0; count < size; count++) {
 		SendChar(Buffer[count]);
 	}
+}//end printOutBuffer()
 
-} //end printOutBuffer()
+/*
+ * convertHex
+ * Input: databuffer address, size of input in buffer
+ * Output: decimal integer
+ * Description: Carrys out functions necessary for hex to dec and to binary conversions
+ */
+uint32_t convertHex(char *DataBuffer,uint32_t current_size){
+	uint32_t dec;
+	printOutBuffer(DataBuffer, current_size);
+	dec = hextoDec(&DataBuffer[current_size], current_size );
+	sprintf(CharBuffer,"\r\n decimal: %6.4d", dec);
+	SendCharArray(&CharBuffer);
+	sprintf(CharBuffer,"\r\n binary: ");
+	SendCharArray(&CharBuffer);
+	dectoBinary(dec);
+	return dec;
+}//end convertHex
+
+
 

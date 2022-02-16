@@ -14,7 +14,7 @@ extern "C" {
 
 #include "msp.h"
 
-uint16_t pins[] = { row1, row2, row3, row4, col5, col6, col7, col8, NULL };
+const uint16_t pins[] = { row1, row2, row3, row4, col5, col6, col7, col8, NULL };
 
 /*!
  * \brief Initialize the input pins necessary for the keypad

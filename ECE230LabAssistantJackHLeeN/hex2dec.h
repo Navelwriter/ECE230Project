@@ -7,14 +7,18 @@
 
 #ifndef HEX2DEC_H_
 #define HEX2DEC_H_
+#include "msp.h"
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 
 #include <math.h>
 #include <stdio.h>
-
 uint32_t hextoDec(char *Buffer, uint32_t size);
+void dectoBinary(int n);
+
 
 //*****************************************************************************
 //
