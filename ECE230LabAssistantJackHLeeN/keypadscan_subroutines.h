@@ -16,8 +16,8 @@
  *
  *                MSP432P4111
  *             ------------------
- *         /|\|                  |
- *          | |       input P6.0|---> button1
+ *         /|\|       input P6.0|---> button1
+ *          | |       input P6.1|---> button2
  *          --|RST    output P4.0|---> key0
  *            |       output P4.1|---> key1
  *            |       output P4.2|---> key2
@@ -34,6 +34,8 @@
 #define KeypadPort P4
 #define buttonPort P6
 #define button1 BIT0
+#define button2 BIT1
+
 #define KeypadInputPins (BIT7 | BIT6 | BIT5 | BIT4)
 #define KeypadOutputPins (BIT3 | BIT2 | BIT1 | BIT0)
 

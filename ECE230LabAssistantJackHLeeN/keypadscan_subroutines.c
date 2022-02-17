@@ -13,8 +13,8 @@
  *
  *                MSP432P4111
  *             ------------------
- *         /|\|                  |
- *          | |        input P6.0|---> button1
+ *         /|\|        input P6.0|---> button1
+ *          | |        input P6.1|---> button2
  *          --|RST    output P4.0|---> key0
  *            |       output P4.1|---> key1
  *            |       output P4.2|---> key2
@@ -32,7 +32,10 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <keypadscan_subroutines.h>
-
+typedef enum _SwitchState {
+	idle, hex, pwm
+} SwitchState;
+extern SwitchState modeSelect;
 
 void keypadconfiguration(void) {
 //Configuring P4.3-0 as output
@@ -61,7 +64,8 @@ void keypadconfiguration(void) {
 }
 
 void buttonConfig(void){
-	  //set buttonport to be intput and pullup
+	//set buttonport to be intput and pullup
+	//BUTTON 1
 	buttonPort ->DIR &= ~button1;
 	buttonPort ->REN |=  button1;
 	buttonPort ->OUT |=  button1;
@@ -71,6 +75,17 @@ void buttonConfig(void){
 	buttonPort ->IFG &= ~button1;//clear int flags
 	//enable PORT interrupt
 	NVIC->ISER[1] |= (1) << (PORT6_IRQn - 32);
+
+	//BUTTON 2
+	buttonPort ->DIR &= ~button2;
+	buttonPort ->REN |=  button2;
+	buttonPort ->OUT |=  button2;
+
+	buttonPort ->IE  |=  button2; //Enable interrupt
+	buttonPort ->IES |=  button2; //Enable interrupt edge on high to low
+	buttonPort ->IFG &= ~button2;//clear int flags
+	//enable PORT interrupt
+	NVIC->ISER[2] |= (PORT6_IRQn - 32);
 }
 
 const char KeyPatterns[16] = {
@@ -153,11 +168,4 @@ void PORT4_IRQHandler(void) {
 
 } // end PORT4_IRQHandler(void)
 
-void PORT6_IRQHandler(void) {
-	uint32_t status;
-	status = buttonPort->IFG;
-	buttonPort->IFG &= ~status; //clear interrupt
-	buttonPress = YES;
 
-
-}// end PORT6_IRQHandler(void)

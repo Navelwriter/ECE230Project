@@ -11,6 +11,7 @@ CMD_SRCS += \
 C_SRCS += \
 ../csHFXT.c \
 ../csLFXT.c \
+../gen_routines.c \
 ../hex2dec.c \
 ../keypadscan_subroutines.c \
 ../main.c \
@@ -21,6 +22,7 @@ C_SRCS += \
 C_DEPS += \
 ./csHFXT.d \
 ./csLFXT.d \
+./gen_routines.d \
 ./hex2dec.d \
 ./keypadscan_subroutines.d \
 ./main.d \
@@ -31,6 +33,7 @@ C_DEPS += \
 OBJS += \
 ./csHFXT.obj \
 ./csLFXT.obj \
+./gen_routines.obj \
 ./hex2dec.obj \
 ./keypadscan_subroutines.obj \
 ./main.obj \
@@ -41,6 +44,7 @@ OBJS += \
 OBJS__QUOTED += \
 "csHFXT.obj" \
 "csLFXT.obj" \
+"gen_routines.obj" \
 "hex2dec.obj" \
 "keypadscan_subroutines.obj" \
 "main.obj" \
@@ -51,6 +55,7 @@ OBJS__QUOTED += \
 C_DEPS__QUOTED += \
 "csHFXT.d" \
 "csLFXT.d" \
+"gen_routines.d" \
 "hex2dec.d" \
 "keypadscan_subroutines.d" \
 "main.d" \
@@ -61,6 +66,7 @@ C_DEPS__QUOTED += \
 C_SRCS__QUOTED += \
 "../csHFXT.c" \
 "../csLFXT.c" \
+"../gen_routines.c" \
 "../hex2dec.c" \
 "../keypadscan_subroutines.c" \
 "../main.c" \
