@@ -53,6 +53,7 @@ char GetChar(void);
 void ConfigureGY521MPU6050(void);
 void SendCharArray(char *Buffer);
 void delay(unsigned int);
+unsigned int returnDecimal(char *Buffer, unsigned int size);
 void PORT6_IRQHandler(void);
 SwitchState CheckMode(char recieved);
 
@@ -82,7 +83,7 @@ void main(void) {
 		if (NewKeyPressed && modeSelect != idle) {
 			input = FoundKey;
 			NewKeyPressed = NO;
-			if (input != '\x0') {
+			 {
 				if (current_size == 0) {
 					SendCharArray("\r\n Key Found: ");
 				}
@@ -105,19 +106,20 @@ void main(void) {
 					decimal = convertBinary(&DataBuffer, current_size);
 					SendCharArray("\r\n\r\n Input 16 digit binary characters ");
 				} else if (maxSize == hexSize){
-					decimal == convertHex(&DataBuffer, current_size);
+					decimal = convertHex(&DataBuffer, current_size);
 					SendCharArray("\r\n\r\n Input 4 digit hex characters ");
 				}
 				current_size = 0; //buffer is of size 0 from size
 			}
 		}
 		if(modeSelect == wavegen){
-			if(NewKeyPressed){
-				NewKeyPressed = NO;
-				input = FoundKey;
-				fprintf(decimal,"%d",input);
+
+			if (buttonPress){
+				buttonPress = NO;
+				decimal = returnDecimal(&DataBuffer[current_size], current_size);
+				changeDutyCycle(decimal);
+				current_size = 0; //buffer is of size 0 from size
 			}
-			changeDutyCycle(decimal);
 		}
 
 	}
@@ -143,20 +145,33 @@ SwitchState CheckMode(char recieved) { //Check for each valid letter and assign 
 		} else if (recieved == '4') {
 			modeSelect = wavegen;
 			maxSize = pwmSize;
-			configHFXT;
-			wavegenConfig;
-			SendCharArray("\r\n\r\n Input percent duty time in up to 3 digit decimal characters ");
+			SendCharArray("\r\n\r\n Input % duty time in up to 3 digit decimal characters ");
+			//configHFXT();
+			wavegenConfig();
 
 		} else {
 			modeSelect = idle;
 			maxSize = none;
-			SendCharArray("\r\n\r\n not functional ");
 
 		}
 		NewKeyPressed = NO;
 	}
 	return maxSize;
 } //End CheckMode
+
+unsigned int returnDecimal(char *Buffer, unsigned int size){
+	unsigned int base = 1; //Base value to 1
+	unsigned int decVal = 0;
+	unsigned int count;
+	for (count = 0; count <= size; count++) { //LSB first
+		if (*Buffer >= '0' && *Buffer <= '9') {
+			decVal += (*Buffer - 48) * base;
+			base = base * 10;
+		}
+		Buffer--;
+	}
+	return decVal;
+}
 
 void PORT6_IRQHandler(void) {
 	uint32_t status;
@@ -167,10 +182,6 @@ void PORT6_IRQHandler(void) {
 
 	}
 	if (buttonPort->IFG & button2) {
-		//check for button 2
-		if(modeSelect == wavegen){
-			toggleWavegen;
-		}
 		modeSelect = idle;
 		SendCharArray(menu);
 		current_size = 0; //buffer is of size 0 from size
