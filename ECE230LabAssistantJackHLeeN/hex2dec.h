@@ -14,17 +14,21 @@ extern "C" {
 
 #include <msp.h>
 
-
-
-
-
 /*
  * convertHex
  * Input: databuffer address, size of input in buffer
  * Output: decimal integer
  * Description: Calls functions necessary for hex to dec and to binary conversions
  */
-uint32_t convertHex(char *DataBuffer,uint32_t current_size);
+uint32_t convertHex(char *DataBuffer, uint32_t current_size);
+
+/*
+ * convertBinary
+ * Input: databuffer address, size of input in buffer
+ * Output: decimal integer
+ * Description: Calls functions necessary for Binary to Hex and to decimal
+ */
+uint32_t convertBinary(char *DataBuffer, uint32_t current_size);
 
 /*
  * convertDecimal
@@ -32,7 +36,7 @@ uint32_t convertHex(char *DataBuffer,uint32_t current_size);
  * Output: decimal integer
  * Description: Calls functions necessary for dec to hex and to binary conversions
  */
-uint32_t convertDecimal(char *DataBuffer,uint32_t current_size);
+uint32_t convertDecimal(char *DataBuffer, uint32_t current_size);
 
 /*
  * hextoDec
@@ -50,6 +54,13 @@ uint32_t hextoDec(char *Buffer, uint32_t size);
  */
 void dectoBinary(int n);
 
+/*
+ * bintoDec
+ * Input: databuffer address, size of input in buffer
+ * Output: decimal integer
+ * Description: Given buffer address and size, returns the raw decimal as char array after binary to decimal
+ */
+uint32_t bintoDec(char *Buffer, uint32_t size);
 
 //*****************************************************************************
 //

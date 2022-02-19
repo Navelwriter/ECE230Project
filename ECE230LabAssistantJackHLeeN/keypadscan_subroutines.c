@@ -42,7 +42,6 @@ void keypadconfiguration(void) {
 	KeypadPort->DIR |= KeypadOutputPins;
 	KeypadPort->SEL0 &= ~KeypadOutputPins;
 	KeypadPort->SEL1 &= ~KeypadOutputPins;
-
 //P4.7-4 as pulled-up input to interface a keypad
 //Pins 7 to 4 cause input change interrupt
 	KeypadPort->DIR &= ~KeypadInputPins;
@@ -51,7 +50,6 @@ void keypadconfiguration(void) {
 //Pullup resistors on input pins
 	KeypadPort->OUT |= KeypadInputPins;
 	KeypadPort->REN |= KeypadInputPins;
-
 //select interrupt edge on high to low transition on input pins
 	KeypadPort->IES |= KeypadInputPins; //bit = 1 in PxIES register
 //enable pin interrupts
