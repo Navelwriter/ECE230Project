@@ -19,7 +19,8 @@ extern "C"
 
 extern void initShiftReg(void);
 
-extern void writechar(uint8_t input);
+extern void writechar(uint8_t input, uint8_t spot, uint8_t display);
+
 //*****************************************************************************
 //
 // Mark the end of the C bindings section for C++ compilers.
