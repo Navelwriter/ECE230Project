@@ -9,6 +9,7 @@ CMD_SRCS += \
 ../msp432p4111.cmd 
 
 C_SRCS += \
+../ShiftReg.c \
 ../csHFXT.c \
 ../csLFXT.c \
 ../gen_routines.c \
@@ -21,6 +22,7 @@ C_SRCS += \
 ../wavegen.c 
 
 C_DEPS += \
+./ShiftReg.d \
 ./csHFXT.d \
 ./csLFXT.d \
 ./gen_routines.d \
@@ -33,6 +35,7 @@ C_DEPS += \
 ./wavegen.d 
 
 OBJS += \
+./ShiftReg.obj \
 ./csHFXT.obj \
 ./csLFXT.obj \
 ./gen_routines.obj \
@@ -45,6 +48,7 @@ OBJS += \
 ./wavegen.obj 
 
 OBJS__QUOTED += \
+"ShiftReg.obj" \
 "csHFXT.obj" \
 "csLFXT.obj" \
 "gen_routines.obj" \
@@ -57,6 +61,7 @@ OBJS__QUOTED += \
 "wavegen.obj" 
 
 C_DEPS__QUOTED += \
+"ShiftReg.d" \
 "csHFXT.d" \
 "csLFXT.d" \
 "gen_routines.d" \
@@ -69,6 +74,7 @@ C_DEPS__QUOTED += \
 "wavegen.d" 
 
 C_SRCS__QUOTED += \
+"../ShiftReg.c" \
 "../csHFXT.c" \
 "../csLFXT.c" \
 "../gen_routines.c" \

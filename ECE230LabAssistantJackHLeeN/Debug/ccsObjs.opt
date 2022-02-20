@@ -1,1 +1,1 @@
-"./csHFXT.obj" "./csLFXT.obj" "./gen_routines.obj" "./hex2dec.obj" "./keypadscan_subroutines.obj" "./main.obj" "./startup_msp432p4111_ccs.obj" "./system_msp432p4111.obj" "./uart_routines.obj" "./wavegen.obj" "../msp432p4111.cmd" -llibc.a 
+"./ShiftReg.obj" "./csHFXT.obj" "./csLFXT.obj" "./gen_routines.obj" "./hex2dec.obj" "./keypadscan_subroutines.obj" "./main.obj" "./startup_msp432p4111_ccs.obj" "./system_msp432p4111.obj" "./uart_routines.obj" "./wavegen.obj" "../msp432p4111.cmd" -llibc.a 

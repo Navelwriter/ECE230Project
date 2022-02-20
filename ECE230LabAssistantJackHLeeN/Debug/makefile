@@ -4,12 +4,13 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := D:/TI/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS
+CG_TOOL_ROOT := C:/ti/ccs1040/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./ShiftReg.obj" \
 "./csHFXT.obj" \
 "./csLFXT.obj" \
 "./gen_routines.obj" \
@@ -149,22 +150,22 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 ECE230LabAssistantJackHLeeN.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: Arm Linker'
-	"D:/TI/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=all --define=__MSP432P4111__ --define=ccs -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"ECE230LabAssistantJackHLeeN.map" --heap_size=1024 --stack_size=512 -i"D:/TI/ccs/ccs_base/arm/include" -i"D:/TI/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/lib" -i"D:/TI/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="ECE230LabAssistantJackHLeeN_linkInfo.xml" --rom_model -o "ECE230LabAssistantJackHLeeN.out" $(ORDERED_OBJS)
+	"C:/ti/ccs1040/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --advice:power=all --define=__MSP432P4111__ --define=ccs -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"ECE230LabAssistantJackHLeeN.map" --heap_size=1024 --stack_size=512 -i"C:/ti/ccs1040/ccs/ccs_base/arm/include" -i"C:/ti/ccs1040/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/lib" -i"C:/ti/ccs1040/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="ECE230LabAssistantJackHLeeN_linkInfo.xml" --rom_model -o "ECE230LabAssistantJackHLeeN.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 ECE230LabAssistantJackHLeeN.hex: $(EXE_OUTPUTS)
 	@echo 'Building secondary target: "$@"'
 	@echo 'Invoking: Arm Hex Utility'
-	"D:/TI/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armhex" --memwidth=8 --romwidth=8 --diag_wrap=off -o "ECE230LabAssistantJackHLeeN.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs1040/ccs/tools/compiler/ti-cgt-arm_20.2.5.LTS/bin/armhex" --memwidth=8 --romwidth=8 --diag_wrap=off -o "ECE230LabAssistantJackHLeeN.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building secondary target: "$@"'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "csHFXT.obj" "csLFXT.obj" "gen_routines.obj" "hex2dec.obj" "keypadscan_subroutines.obj" "main.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" "uart_routines.obj" "wavegen.obj" 
-	-$(RM) "csHFXT.d" "csLFXT.d" "gen_routines.d" "hex2dec.d" "keypadscan_subroutines.d" "main.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" "uart_routines.d" "wavegen.d" 
+	-$(RM) "ShiftReg.obj" "csHFXT.obj" "csLFXT.obj" "gen_routines.obj" "hex2dec.obj" "keypadscan_subroutines.obj" "main.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" "uart_routines.obj" "wavegen.obj" 
+	-$(RM) "ShiftReg.d" "csHFXT.d" "csLFXT.d" "gen_routines.d" "hex2dec.d" "keypadscan_subroutines.d" "main.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" "uart_routines.d" "wavegen.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
