@@ -16,7 +16,7 @@ ORDERED_OBJS += \
 "./gen_routines.obj" \
 "./hex2dec.obj" \
 "./keypadscan_subroutines.obj" \
-"./main.obj" \
+"./main2.obj" \
 "./startup_msp432p4111_ccs.obj" \
 "./system_msp432p4111.obj" \
 "./uart_routines.obj" \
@@ -164,8 +164,8 @@ ECE230LabAssistantJackHLeeN.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ShiftReg.obj" "csHFXT.obj" "csLFXT.obj" "gen_routines.obj" "hex2dec.obj" "keypadscan_subroutines.obj" "main.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" "uart_routines.obj" "wavegen.obj" 
-	-$(RM) "ShiftReg.d" "csHFXT.d" "csLFXT.d" "gen_routines.d" "hex2dec.d" "keypadscan_subroutines.d" "main.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" "uart_routines.d" "wavegen.d" 
+	-$(RM) "ShiftReg.obj" "csHFXT.obj" "csLFXT.obj" "gen_routines.obj" "hex2dec.obj" "keypadscan_subroutines.obj" "main2.obj" "startup_msp432p4111_ccs.obj" "system_msp432p4111.obj" "uart_routines.obj" "wavegen.obj" 
+	-$(RM) "ShiftReg.d" "csHFXT.d" "csLFXT.d" "gen_routines.d" "hex2dec.d" "keypadscan_subroutines.d" "main2.d" "startup_msp432p4111_ccs.d" "system_msp432p4111.d" "uart_routines.d" "wavegen.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

@@ -15,7 +15,7 @@ C_SRCS += \
 ../gen_routines.c \
 ../hex2dec.c \
 ../keypadscan_subroutines.c \
-../main.c \
+../main2.c \
 ../startup_msp432p4111_ccs.c \
 ../system_msp432p4111.c \
 ../uart_routines.c \
@@ -28,7 +28,7 @@ C_DEPS += \
 ./gen_routines.d \
 ./hex2dec.d \
 ./keypadscan_subroutines.d \
-./main.d \
+./main2.d \
 ./startup_msp432p4111_ccs.d \
 ./system_msp432p4111.d \
 ./uart_routines.d \
@@ -41,7 +41,7 @@ OBJS += \
 ./gen_routines.obj \
 ./hex2dec.obj \
 ./keypadscan_subroutines.obj \
-./main.obj \
+./main2.obj \
 ./startup_msp432p4111_ccs.obj \
 ./system_msp432p4111.obj \
 ./uart_routines.obj \
@@ -54,7 +54,7 @@ OBJS__QUOTED += \
 "gen_routines.obj" \
 "hex2dec.obj" \
 "keypadscan_subroutines.obj" \
-"main.obj" \
+"main2.obj" \
 "startup_msp432p4111_ccs.obj" \
 "system_msp432p4111.obj" \
 "uart_routines.obj" \
@@ -67,7 +67,7 @@ C_DEPS__QUOTED += \
 "gen_routines.d" \
 "hex2dec.d" \
 "keypadscan_subroutines.d" \
-"main.d" \
+"main2.d" \
 "startup_msp432p4111_ccs.d" \
 "system_msp432p4111.d" \
 "uart_routines.d" \
@@ -80,7 +80,7 @@ C_SRCS__QUOTED += \
 "../gen_routines.c" \
 "../hex2dec.c" \
 "../keypadscan_subroutines.c" \
-"../main.c" \
+"../main2.c" \
 "../startup_msp432p4111_ccs.c" \
 "../system_msp432p4111.c" \
 "../uart_routines.c" \
